@@ -13,7 +13,7 @@ The snippet below will create for you:
 
 ```hcl-terraform
 module "aks" {
-  source   = "jacops/aks-cluster"
+  source   = "jacops/aks-cluster/azurerm"
   location = "uksouth"
 }
 ```
@@ -37,7 +37,7 @@ resource "azurerm_resource_group" "aks" {
 
 
 module "aks" {
-  source = "jacops/aks-cluster"
+  source = "jacops/aks-cluster/azurerm"
 
   location       = azurerm_resource_group.aks.location
   resource_group = azurerm_resource_group.aks.name
