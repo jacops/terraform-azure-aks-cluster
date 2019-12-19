@@ -42,6 +42,10 @@ resource "random_string" "aks_sp_password" {
 resource "azuread_application" "aks" {
   name = module.label.id
 
+  provisioner "local-exec" {
+    command = "sleep 15" #Sometimes AKS doesn't see this SP, so we need to give it some time
+  }
+
   count = var.service_principal_client_id == "" ? 1 : 0
 }
 
@@ -106,4 +110,8 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   }
 
   tags = module.label.tags
+
+  provisioner "local-exec" {
+    command = ""
+  }
 }
